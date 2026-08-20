@@ -242,6 +242,39 @@ footer p {
   stroke-width: 2.8;
 }
 
+.cursor-plane-shape {
+  fill: #f0f8f8;
+  stroke: #585870;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.8;
+}
+
+.cursor-plane-upper {
+  fill: #b8d8e0;
+}
+
+.cursor-plane-shadow {
+  fill: #d0e8f0;
+}
+
+.cursor-plane-fold,
+.cursor-plane-light {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cursor-plane-fold {
+  stroke: #a890d8;
+  stroke-width: 2;
+}
+
+.cursor-plane-light {
+  stroke: rgba(255, 255, 255, 0.82);
+  stroke-width: 1.4;
+}
+
 .cursor-panel {
   fill: #eaf5fb;
 }

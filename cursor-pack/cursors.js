@@ -16,9 +16,11 @@
       '<g' +
       (transform ? ' transform="' + transform + '"' : "") +
       ">" +
-      '<path class="cursor-shape" d="M9 6 L47 28 L30.5 31.1 L39.5 49.1 L31.2 53.2 L22.1 34.7 L10.4 45.5 Z" />' +
-      '<path class="cursor-panel" d="M11.1 8.5 L23.5 32.3 L43.8 28.5 Z" />' +
-      '<path class="cursor-line" d="M11.1 8.5 L23.5 32.3 L43.8 28.5 M23.5 32.3 L13.3 42.3" />' +
+      '<path class="cursor-plane-shape" d="M6.5 7.2 C20.5 11.3 40.2 17.3 56 23.3 L29.2 34.1 L49.4 49.4 C38.6 47.4 28.6 43.8 20.6 39.3 C18.5 44.5 15.8 49.6 12.6 54.2 C11.5 39.5 9.4 22.5 6.5 7.2 Z" />' +
+      '<path class="cursor-plane-upper" d="M8.7 9.3 C22 13.3 40 18.6 52.8 23.2 C43.5 26.3 35.1 29.7 29.2 32.5 Z" />' +
+      '<path class="cursor-plane-shadow" d="M29.2 34.1 L46.3 47.3 C36.6 44.9 28.5 41.8 21.8 38.1 Z" />' +
+      '<path class="cursor-plane-fold" d="M8.7 9.3 L29.2 34.1 L52.8 23.2 M12.6 13.2 L34.9 29.8 M29.2 34.1 L20.6 39.3" />' +
+      '<path class="cursor-plane-light" d="M10.1 10.7 C21 14.4 35.1 18.5 45.5 21.8" />' +
       "</g>"
     );
   }
@@ -38,7 +40,7 @@
   var cursors = [
     {
       id: "normal",
-      name: "正常选择 · 折纸箭头",
+      name: "正常选择 · 旅行纸飞机",
       english: "NORMAL SELECT",
       art: svg(arrowBody(), "正常选择指针")
     },
@@ -185,12 +187,12 @@
     },
     {
       id: "alternate",
-      name: "备选选择 · 向上折纸箭头",
+      name: "备选选择 · 向上纸飞机",
       english: "ALTERNATE SELECT",
       art: svg(
-        '<path class="cursor-shape" d="M32 5 L49 31 H38 V56 H26 V31 H15 Z" />' +
-          '<path class="cursor-panel" d="M32 9 L32 53 H28.5 V29 H20 Z" />' +
-          '<path class="cursor-line" d="M32 9 V53 M19 29 L32 22 L45 29" />',
+        '<g transform="translate(5 5) scale(.84) rotate(45 32 32)">' +
+          arrowBody() +
+          "</g>",
         "备选选择指针"
       )
     },
