@@ -1,13 +1,11 @@
 :root {
   color-scheme: light;
-  --ink: #173746;
-  --muted: #667a83;
-  --blue: #087fc3;
-  --sky: #69dce6;
-  --yellow: #ffd43b;
-  --orange: #ff8a2a;
-  --pink: #f35da6;
-  --paper: #fffef8;
+  --ink: #17232d;
+  --muted: #697680;
+  --blue: #0962b5;
+  --sky: #8fcce6;
+  --yellow: #fcc641;
+  --paper: #fffdf9;
   --surface: #ffffff;
   --canvas: #eef2f3;
   --line: #ced8dc;
@@ -175,7 +173,7 @@ main {
 .cursor-card-art .cursor-icon {
   width: 100px;
   height: 100px;
-  filter: drop-shadow(3px 4px 0 rgba(23, 55, 70, 0.14));
+  filter: drop-shadow(0 4px 4px rgba(23, 35, 45, 0.16));
 }
 
 .static-frame-label {
@@ -233,102 +231,107 @@ footer p {
 /* Inline cursor artwork */
 .cursor-icon {
   overflow: visible;
+  shape-rendering: geometricPrecision;
 }
 
-.cursor-paper {
-  fill: #fffef8;
-  stroke: #173746;
+.cursor-shape {
+  fill: #fffdf9;
+  stroke: #17232d;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 4;
+  stroke-width: 2.8;
 }
 
-.cursor-paper-thin {
-  fill: #fffef8;
-  stroke: #173746;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3.5;
+.cursor-panel {
+  fill: #eaf5fb;
 }
 
-.cursor-fold {
-  fill: none;
-  stroke: #087fc3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.4;
+.cursor-ink {
+  fill: #17232d;
 }
 
-.cursor-fold-light {
-  fill: none;
-  stroke: #69dce6;
+.cursor-accent {
+  fill: #0962b5;
+}
+
+.cursor-sky {
+  fill: #8fcce6;
+}
+
+.cursor-highlight {
+  fill: #fcc641;
+}
+
+.cursor-highlight-outline {
+  fill: #fcc641;
+  stroke: #17232d;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2.2;
 }
 
-.cursor-ink {
-  fill: #173746;
-}
-
-.cursor-blue {
-  fill: #087fc3;
-}
-
-.cursor-sky {
-  fill: #69dce6;
-}
-
-.cursor-yellow {
-  fill: #ffd43b;
-}
-
-.cursor-orange {
-  fill: #ff8a2a;
-}
-
-.cursor-pink {
-  fill: #f35da6;
-}
-
-.cursor-outline-blue {
-  fill: #fffef8;
-  stroke: #087fc3;
+.cursor-line {
+  fill: none;
+  stroke: #0962b5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 3;
+  stroke-width: 2.1;
 }
 
 .cursor-line-ink {
   fill: none;
-  stroke: #173746;
+  stroke: #17232d;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 3.5;
+  stroke-width: 2.5;
 }
 
-.cursor-line-blue {
+.cursor-underlay {
   fill: none;
-  stroke: #087fc3;
+  stroke: #fffdf9;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 2.4;
+  stroke-width: 6.5;
 }
 
-.cursor-line-yellow {
+.cursor-route {
   fill: none;
-  stroke: #ffd43b;
+  stroke: #0962b5;
+  stroke-dasharray: 3.4 4.2;
+  stroke-linecap: round;
+  stroke-width: 2.2;
+}
+
+.cursor-spinner-primary,
+.cursor-spinner-secondary {
+  fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 3;
+  stroke-width: 4.2;
 }
 
-.cursor-dash {
+.cursor-spinner-primary {
+  stroke: #0962b5;
+}
+
+.cursor-spinner-secondary {
+  stroke: #fcc641;
+}
+
+.cursor-danger-underlay,
+.cursor-danger-line {
   fill: none;
-  stroke: #087fc3;
-  stroke-dasharray: 3 5;
   stroke-linecap: round;
-  stroke-width: 2;
+}
+
+.cursor-danger-underlay {
+  stroke: #fffdf9;
+  stroke-width: 8;
+}
+
+.cursor-danger-line {
+  stroke: #e8614f;
+  stroke-width: 5.2;
 }
 
 @media (max-width: 1180px) {

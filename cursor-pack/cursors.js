@@ -5,70 +5,9 @@
     return (
       '<svg class="cursor-icon" viewBox="0 0 64 64" role="img" aria-label="' +
       label +
-      '">' +
+      '" focusable="false">' +
       body +
       "</svg>"
-    );
-  }
-
-  function sparkle(x, y, size, className) {
-    var half = size * 0.2;
-    return (
-      '<path class="' +
-      className +
-      '" d="M ' +
-      x +
-      " " +
-      (y - size) +
-      " C " +
-      (x + half) +
-      " " +
-      (y - half) +
-      ", " +
-      (x + half) +
-      " " +
-      (y - half) +
-      ", " +
-      (x + size) +
-      " " +
-      y +
-      " C " +
-      (x + half) +
-      " " +
-      (y + half) +
-      ", " +
-      (x + half) +
-      " " +
-      (y + half) +
-      ", " +
-      x +
-      " " +
-      (y + size) +
-      " C " +
-      (x - half) +
-      " " +
-      (y + half) +
-      ", " +
-      (x - half) +
-      " " +
-      (y + half) +
-      ", " +
-      (x - size) +
-      " " +
-      y +
-      " C " +
-      (x - half) +
-      " " +
-      (y - half) +
-      ", " +
-      (x - half) +
-      " " +
-      (y - half) +
-      ", " +
-      x +
-      " " +
-      (y - size) +
-      ' Z" />'
     );
   }
 
@@ -77,26 +16,9 @@
       '<g' +
       (transform ? ' transform="' + transform + '"' : "") +
       ">" +
-      '<path class="cursor-paper" d="M7 6 L48 24 L30 30 L40 49 L31 54 L21 34 L9 45 Z" />' +
-      '<path class="cursor-fold" d="M8.8 7.6 L23 31.5 L47 24.2 M23 31.5 L14 40" />' +
-      '<path class="cursor-yellow" d="M41 14 l2.1 4.1 4.6.7-3.3 3.2.8 4.6-4.2-2.2-4.1 2.2.8-4.6-3.3-3.2 4.6-.7z" />' +
-      "</g>"
-    );
-  }
-
-  function envelope(x, y, scale, extraClass) {
-    return (
-      '<g class="' +
-      (extraClass || "") +
-      '" transform="translate(' +
-      x +
-      " " +
-      y +
-      ") scale(" +
-      scale +
-      ')">' +
-      '<rect class="cursor-paper-thin" x="0" y="0" width="22" height="15" rx="2.5" />' +
-      '<path class="cursor-fold" d="M2 2 l9 7 9-7 M2 13 l6-5 M20 13 l-6-5" />' +
+      '<path class="cursor-shape" d="M9 6 L47 28 L30.5 31.1 L39.5 49.1 L31.2 53.2 L22.1 34.7 L10.4 45.5 Z" />' +
+      '<path class="cursor-panel" d="M11.1 8.5 L23.5 32.3 L43.8 28.5 Z" />' +
+      '<path class="cursor-line" d="M11.1 8.5 L23.5 32.3 L43.8 28.5 M23.5 32.3 L13.3 42.3" />' +
       "</g>"
     );
   }
@@ -106,9 +28,9 @@
       '<g transform="rotate(' +
       rotation +
       ' 32 32)">' +
-      '<path class="cursor-paper" d="M32 5 L19 19 L27 19 L27 45 L19 45 L32 59 L45 45 L37 45 L37 19 L45 19 Z" />' +
-      '<path class="cursor-fold" d="M32 9 L32 55 M24 18 L32 10 L40 18 M24 46 L32 54 L40 46" />' +
-      sparkle(45, 32, 3.5, "cursor-pink") +
+      '<path class="cursor-shape" d="M32 6 L22 17 H28 V47 H22 L32 58 L42 47 H36 V17 H42 Z" />' +
+      '<path class="cursor-panel" d="M32 9.5 L24.8 16 H39.2 Z M32 54.5 L24.8 48 H39.2 Z" />' +
+      '<path class="cursor-line" d="M32 11 V53" />' +
       "</g>"
     );
   }
@@ -116,246 +38,184 @@
   var cursors = [
     {
       id: "normal",
-      name: "正常选择 · 纸飞机箭头",
-      shortName: "正常选择",
+      name: "正常选择 · 折纸箭头",
       english: "NORMAL SELECT",
-      format: "CUR",
-      hotspot: [7, 6],
-      description: "点击热点固定在纸飞机最前端，尾部星芒不参与定位。",
       art: svg(arrowBody(), "正常选择指针")
     },
     {
       id: "help",
-      name: "帮助选择 · 旅途问号",
-      shortName: "帮助选择",
+      name: "帮助选择 · 酸橙问号",
       english: "HELP SELECT",
-      format: "CUR",
-      hotspot: [7, 8],
-      description: "保留箭头尖端，在右上角加一枚酸橙黄问号徽章。",
       art: svg(
-        arrowBody("translate(1 4) scale(.82)") +
-          '<path class="cursor-paper" d="M39 7 C39 2 45 1 49 3 C54 5 55 10 52 14 C50 17 47 17 47 21" />' +
-          '<circle class="cursor-pink" cx="47" cy="27" r="3" />' +
-          sparkle(57, 8, 3.5, "cursor-yellow"),
+        arrowBody("translate(0 5) scale(.78)") +
+          '<g transform="translate(36 5)">' +
+          '<circle class="cursor-shape" cx="11" cy="11" r="10" />' +
+          '<circle class="cursor-highlight" cx="11" cy="11" r="7.2" />' +
+          '<path class="cursor-line-ink" d="M7.5 8.5 C7.8 5.8 10 4.4 12.4 4.8 C15.2 5.2 16.5 7.3 15.7 9.5 C15 11.3 12.5 11.8 11.7 14" />' +
+          '<circle class="cursor-ink" cx="11.2" cy="17" r="1.6" />' +
+          "</g>",
         "帮助选择指针"
       )
     },
     {
       id: "working",
-      name: "后台运行 · 信笺绕行",
-      shortName: "后台运行",
+      name: "后台运行 · 路线进度",
       english: "WORKING IN BACKGROUND",
-      format: "ANI",
-      hotspot: [6, 7],
-      description: "箭头保持稳定，信封与星点绕行；动画不会改变点击热点。",
       animated: true,
       art: svg(
-        arrowBody("translate(0 5) scale(.72)") +
-          '<g class="cursor-orbit">' +
-          '<circle class="cursor-dash" cx="44" cy="39" r="14" />' +
-          envelope(38, 20, 0.64, "") +
-          sparkle(52, 51, 3.8, "cursor-pink") +
+        arrowBody("translate(0 6) scale(.72)") +
+          '<g transform="translate(31 24)">' +
+          '<circle class="cursor-shape" cx="14" cy="14" r="12.5" />' +
+          '<circle class="cursor-route" cx="14" cy="14" r="8.5" />' +
+          '<circle class="cursor-highlight" cx="14" cy="5.5" r="2.8" />' +
+          '<circle class="cursor-accent" cx="21.4" cy="17.8" r="2.3" />' +
+          '<circle class="cursor-sky" cx="7.1" cy="19" r="2.1" />' +
           "</g>",
         "后台运行指针"
       )
     },
     {
       id: "busy",
-      name: "忙碌 · 酸橙星环",
-      shortName: "忙碌",
+      name: "忙碌 · 酸橙进度环",
       english: "BUSY",
-      format: "ANI",
-      hotspot: [32, 32],
-      description: "以橙子切片为中心，彩色星芒旋转；中心就是等待位置。",
       animated: true,
       art: svg(
-        '<g class="cursor-spin">' +
-          '<circle class="cursor-paper" cx="32" cy="32" r="18" />' +
-          '<circle class="cursor-yellow" cx="32" cy="32" r="13.5" />' +
-          '<path class="cursor-line-ink" d="M32 19 v26 M19 32 h26 M23 23 l18 18 M41 23 23 41" />' +
-          '<circle class="cursor-paper-thin" cx="32" cy="32" r="4" />' +
-          sparkle(51, 16, 5, "cursor-pink") +
-          sparkle(13, 44, 4, "cursor-sky") +
-          "</g>",
+        '<circle class="cursor-shape" cx="32" cy="32" r="20.5" />' +
+          '<circle class="cursor-panel" cx="32" cy="32" r="15.5" />' +
+          '<g class="cursor-spinner-primary">' +
+          '<path d="M32 14.5 V21 M49.5 32 H43 M32 49.5 V43 M14.5 32 H21" />' +
+          "</g>" +
+          '<g class="cursor-spinner-secondary">' +
+          '<path d="M44.4 19.6 L39.8 24.2 M44.4 44.4 L39.8 39.8 M19.6 44.4 L24.2 39.8 M19.6 19.6 L24.2 24.2" />' +
+          "</g>" +
+          '<circle class="cursor-shape" cx="32" cy="32" r="5" />' +
+          '<circle class="cursor-accent" cx="32" cy="32" r="2.1" />',
         "忙碌指针"
       )
     },
     {
       id: "precision",
-      name: "精确选择 · 四角星准心",
-      shortName: "精确选择",
+      name: "精确选择 · 旅行准星",
       english: "PRECISION SELECT",
-      format: "CUR",
-      hotspot: [32, 32],
-      description: "中心留出一个明确空点，四条星形尖角承担准星方向。",
       art: svg(
-        '<path class="cursor-paper" d="M32 7 C35 23 41 29 57 32 C41 35 35 41 32 57 C29 41 23 35 7 32 C23 29 29 23 32 7 Z" />' +
-          '<circle class="cursor-blue" cx="32" cy="32" r="6" />' +
-          '<circle class="cursor-paper-thin" cx="32" cy="32" r="2.3" />' +
-          sparkle(48, 16, 3.5, "cursor-yellow") +
-          '<path class="cursor-line-blue" d="M32 4 v7 M32 53 v7 M4 32 h7 M53 32 h7" />',
+        '<path class="cursor-underlay" d="M32 5 V24 M32 40 V59 M5 32 H24 M40 32 H59" />' +
+          '<path class="cursor-line-ink" d="M32 5 V24 M32 40 V59 M5 32 H24 M40 32 H59" />' +
+          '<path class="cursor-accent" d="M32 3 L28.5 10 H35.5 Z M61 32 L54 28.5 V35.5 Z M32 61 L28.5 54 H35.5 Z M3 32 L10 28.5 V35.5 Z" />' +
+          '<circle class="cursor-shape" cx="32" cy="32" r="9" />' +
+          '<circle class="cursor-highlight-outline" cx="32" cy="32" r="3.3" />',
         "精确选择指针"
       )
     },
     {
       id: "text",
-      name: "文本选择 · 信纸折痕",
-      shortName: "文本选择",
+      name: "文本选择 · 折线光标",
       english: "TEXT SELECT",
-      format: "CUR",
-      hotspot: [32, 32],
-      description: "I-beam 保留标准结构，折痕蓝线与薄荷花只做边缘装饰。",
       art: svg(
-        '<path class="cursor-paper" d="M17 8 H47 V16 H37 V48 H47 V56 H17 V48 H27 V16 H17 Z" />' +
-          '<path class="cursor-fold" d="M21 12 H43 M32 16 V48 M21 52 H43" />' +
-          '<g transform="translate(47 14)">' +
-          '<circle class="cursor-sky" cx="0" cy="-5" r="4" />' +
-          '<circle class="cursor-sky" cx="5" cy="0" r="4" />' +
-          '<circle class="cursor-sky" cx="0" cy="5" r="4" />' +
-          '<circle class="cursor-sky" cx="-5" cy="0" r="4" />' +
-          '<circle class="cursor-yellow" cx="0" cy="0" r="3" />' +
-          "</g>",
+        '<path class="cursor-shape" d="M18 8 H46 V15 H36 V49 H46 V56 H18 V49 H28 V15 H18 Z" />' +
+          '<path class="cursor-panel" d="M21 10.8 H43 V13 H34 V51 H43 V53.2 H21 V51 H30 V13 H21 Z" />' +
+          '<path class="cursor-line" d="M32 15 V49" />',
         "文本选择指针"
       )
     },
     {
       id: "handwriting",
       name: "手写 · 旅行钢笔",
-      shortName: "手写",
       english: "HANDWRITING",
-      format: "CUR",
-      hotspot: [9, 55],
-      description: "热点落在笔尖；笔杆采用纸飞机折线，尾部是一枚粉色邮戳。",
       art: svg(
-        '<g transform="rotate(-43 32 32)">' +
-          '<path class="cursor-paper" d="M27 7 H39 L40 43 L33 58 L26 43 Z" />' +
-          '<path class="cursor-fold" d="M28 17 H39 M27 42 H40 M33 18 V53" />' +
-          '<path class="cursor-blue" d="M27 7 h12 v10 H27z" />' +
-          '<circle class="cursor-pink" cx="33" cy="11.5" r="3" />' +
-          "</g>" +
-          '<path class="cursor-dash" d="M12 54 C22 47 23 60 34 55" />',
+        '<g transform="rotate(-42 32 32)">' +
+          '<path class="cursor-shape" d="M24 7 H40 V34 L32 58 L24 34 Z" />' +
+          '<path class="cursor-panel" d="M26 9 H38 V19 H26 Z" />' +
+          '<path class="cursor-accent" d="M25.5 9 H38.5 V15 H25.5 Z" />' +
+          '<path class="cursor-line" d="M25.5 21 H38.5 M32 21 V49" />' +
+          '<circle class="cursor-highlight-outline" cx="32" cy="31" r="3.1" />' +
+          '<path class="cursor-ink" d="M29.5 50 L32 58 L34.5 50 Z" />' +
+          "</g>",
         "手写指针"
       )
     },
     {
       id: "unavailable",
-      name: "不可用 · 被退回的信",
-      shortName: "不可用",
+      name: "不可用 · 禁止通行",
       english: "UNAVAILABLE",
-      format: "CUR",
-      hotspot: [32, 32],
-      description: "信封仍可辨认，但橙色斜杠明确表达不可操作。",
       art: svg(
-        '<circle class="cursor-paper" cx="32" cy="32" r="24" />' +
-          envelope(20, 25, 1.1, "") +
-          '<path d="M15 49 L49 15" fill="none" stroke="#ff8a2a" stroke-linecap="round" stroke-width="8" />' +
-          '<path d="M15 49 L49 15" fill="none" stroke="#173746" stroke-linecap="round" stroke-width="2" />',
+        '<circle class="cursor-shape" cx="32" cy="32" r="22.5" />' +
+          '<g opacity=".72">' +
+          arrowBody("translate(14 15) scale(.43)") +
+          "</g>" +
+          '<path class="cursor-danger-underlay" d="M16 48 L48 16" />' +
+          '<path class="cursor-danger-line" d="M16 48 L48 16" />',
         "不可用指针"
       )
     },
     {
       id: "resize-ns",
       name: "垂直调整 · 路线双箭头",
-      shortName: "垂直调整",
       english: "VERTICAL RESIZE",
-      format: "CUR",
-      hotspot: [32, 32],
-      description: "四组缩放共用一套手绘纸带轮廓，只改变方向。",
       art: svg(resizeBody(0), "垂直调整指针")
     },
     {
       id: "resize-we",
       name: "水平调整 · 路线双箭头",
-      shortName: "水平调整",
       english: "HORIZONTAL RESIZE",
-      format: "CUR",
-      hotspot: [32, 32],
-      description: "水平方向仍以中心为热点，保证窗口边缘拖动准确。",
       art: svg(resizeBody(90), "水平调整指针")
     },
     {
       id: "resize-nwse",
-      name: "对角调整 1 · 斜向纸带",
-      shortName: "对角调整 1",
+      name: "对角调整 1 · 路线双箭头",
       english: "DIAGONAL RESIZE 1",
-      format: "CUR",
-      hotspot: [32, 32],
-      description: "西北到东南方向，端点保持足够粗，缩小后仍可识别。",
-      art: svg('<g transform="translate(6 6) scale(.82)">' + resizeBody(-45) + "</g>", "对角调整一指针")
+      art: svg(resizeBody(-45), "对角调整一指针")
     },
     {
       id: "resize-nesw",
-      name: "对角调整 2 · 斜向纸带",
-      shortName: "对角调整 2",
+      name: "对角调整 2 · 路线双箭头",
       english: "DIAGONAL RESIZE 2",
-      format: "CUR",
-      hotspot: [32, 32],
-      description: "东北到西南方向，与另一条对角线形成完整组合。",
-      art: svg('<g transform="translate(6 6) scale(.82)">' + resizeBody(45) + "</g>", "对角调整二指针")
+      art: svg(resizeBody(45), "对角调整二指针")
     },
     {
       id: "move",
-      name: "移动 · 四向旅行罗盘",
-      shortName: "移动",
+      name: "移动 · 四向路线",
       english: "MOVE",
-      format: "CUR",
-      hotspot: [32, 32],
-      description: "四个方向像旅行路线一样展开，中间是一颗酸橙星。",
       art: svg(
-        '<path class="cursor-paper" d="M32 4 L21 16 H27 V27 H16 V21 L4 32 L16 43 V37 H27 V48 H21 L32 60 L43 48 H37 V37 H48 V43 L60 32 L48 21 V27 H37 V16 H43 Z" />' +
-          '<circle class="cursor-yellow" cx="32" cy="32" r="8" />' +
-          '<path class="cursor-line-blue" d="M32 9 V24 M32 40 V55 M9 32 H24 M40 32 H55" />' +
-          sparkle(32, 32, 4.5, "cursor-orange"),
+        '<path class="cursor-shape" d="M32 5 L22 16 H28 V28 H16 V22 L5 32 L16 42 V36 H28 V48 H22 L32 59 L42 48 H36 V36 H48 V42 L59 32 L48 22 V28 H36 V16 H42 Z" />' +
+          '<path class="cursor-panel" d="M32 9 L25 15 H39 Z M55 32 L49 25 V39 Z M32 55 L25 49 H39 Z M9 32 L15 25 V39 Z" />' +
+          '<path class="cursor-line" d="M32 11 V53 M11 32 H53" />' +
+          '<circle class="cursor-highlight-outline" cx="32" cy="32" r="4.4" />',
         "移动指针"
       )
     },
     {
       id: "alternate",
-      name: "备选选择 · 向上启程",
-      shortName: "备选选择",
+      name: "备选选择 · 向上折纸箭头",
       english: "ALTERNATE SELECT",
-      format: "CUR",
-      hotspot: [32, 5],
-      description: "向上的纸飞机代替生硬箭头，弯曲尾迹补充旅行感。",
       art: svg(
-        '<path class="cursor-paper" d="M32 5 L50 38 L37 33 L32 58 L27 33 L14 38 Z" />' +
-          '<path class="cursor-fold" d="M32 7 V48 M17 36 L32 25 L47 36" />' +
-          '<path class="cursor-dash" d="M18 53 C8 46 10 37 19 42" />' +
-          sparkle(50, 14, 4, "cursor-pink"),
+        '<path class="cursor-shape" d="M32 5 L49 31 H38 V56 H26 V31 H15 Z" />' +
+          '<path class="cursor-panel" d="M32 9 L32 53 H28.5 V29 H20 Z" />' +
+          '<path class="cursor-line" d="M32 9 V53 M19 29 L32 22 L45 29" />',
         "备选选择指针"
       )
     },
     {
       id: "link",
-      name: "链接选择 · 星愿手套",
-      shortName: "链接选择",
+      name: "链接选择 · 旅行手套",
       english: "LINK SELECT",
-      format: "CUR",
-      hotspot: [25, 7],
-      description: "保留熟悉的指向手势，指尖星芒负责提示可以打开。",
       art: svg(
-        '<path class="cursor-paper" d="M23 31 V12 C23 7 31 7 31 12 V27 L35 21 C37 17 43 20 41 24 L39 28 L43 24 C46 21 51 25 48 29 L45 32 L49 29 C52 27 56 32 53 35 L43 48 C40 52 35 55 29 54 C22 53 17 49 14 44 L10 37 C8 32 15 29 18 34 Z" />' +
-          '<path class="cursor-fold" d="M31 27 V39 M39 28 L35 38 M45 32 L39 41" />' +
-          sparkle(25, 6, 5, "cursor-yellow") +
-          '<circle class="cursor-pink" cx="48" cy="44" r="4" />',
+        '<path class="cursor-shape" d="M24 31 V12.5 C24 8.2 30 8.2 30 12.5 V27 L34 21 C36 17.8 41 20 39.7 23.4 L38 28 L42 24 C44.6 21.5 49 24.1 47 27.4 L43 32 L47 29 C50.2 26.8 53.6 31 51.2 34.3 L42.5 47 C39.5 51.8 34.8 54 29.2 53.2 C23.3 52.3 18.6 48.3 15.4 43.1 L11 36.2 C8.8 32.5 14 29.3 17 33 Z" />' +
+          '<path class="cursor-panel" d="M16.8 42.8 C20.3 47.8 24.7 50.5 29.8 51.1 C34.2 51.6 38.1 49.7 40.7 46.1 L43 42.8 C35.3 46.6 25.4 47 16.8 42.8 Z" />' +
+          '<path class="cursor-line" d="M30 27 V39 M38 28 L34.5 38 M43 32 L38.7 40" />' +
+          '<circle class="cursor-highlight-outline" cx="27" cy="8" r="3.2" />',
         "链接选择指针"
       )
     },
     {
       id: "location",
       name: "位置选择 · 旅行定位标",
-      shortName: "位置选择",
       english: "LOCATION SELECT",
-      format: "CUR",
-      hotspot: [7, 7],
-      description: "纸飞机箭头旁加入路线定位标，对应 Windows 的位置选择状态。",
       art: svg(
-        arrowBody("translate(0 5) scale(.72)") +
-          '<g transform="translate(32 10)">' +
-          '<path class="cursor-paper" d="M14 1 C6.2 1 1 6.8 1 14.4 C1 24.8 14 39 14 39 C14 39 27 24.8 27 14.4 C27 6.8 21.8 1 14 1 Z" />' +
-          '<circle class="cursor-sky" cx="14" cy="14" r="6" />' +
-          '<circle class="cursor-paper-thin" cx="14" cy="14" r="2.2" />' +
-          sparkle(25, 4, 3, "cursor-yellow") +
+        arrowBody("translate(0 6) scale(.69)") +
+          '<g transform="translate(31 8)">' +
+          '<path class="cursor-shape" d="M15 1.5 C7.1 1.5 2 7.1 2 14.6 C2 25.1 15 40.5 15 40.5 C15 40.5 28 25.1 28 14.6 C28 7.1 22.9 1.5 15 1.5 Z" />' +
+          '<circle class="cursor-panel" cx="15" cy="14.5" r="7.2" />' +
+          '<circle class="cursor-highlight-outline" cx="15" cy="14.5" r="3.1" />' +
           "</g>",
         "位置选择指针"
       )
@@ -363,27 +223,20 @@
     {
       id: "person",
       name: "人员选择 · 旅伴徽章",
-      shortName: "人员选择",
       english: "PERSON SELECT",
-      format: "CUR",
-      hotspot: [7, 7],
-      description: "纸飞机箭头搭配旅伴头像徽章，对应 Windows 的人员选择状态。",
       art: svg(
-        arrowBody("translate(0 5) scale(.72)") +
-          '<g transform="translate(31 12)">' +
-          '<circle class="cursor-paper" cx="15" cy="17" r="14" />' +
-          '<circle class="cursor-yellow" cx="15" cy="12" r="5" />' +
-          '<path class="cursor-blue" d="M6.5 27 C7.8 20.5 11 18 15 18 C19 18 22.2 20.5 23.5 27 Z" />' +
-          '<path class="cursor-fold" d="M8 27 C9 22 11.5 20 15 20 C18.5 20 21 22 22 27" />' +
-          sparkle(29, 5, 3.2, "cursor-pink") +
+        arrowBody("translate(0 6) scale(.69)") +
+          '<g transform="translate(32 11)">' +
+          '<circle class="cursor-shape" cx="14" cy="16" r="13.5" />' +
+          '<circle class="cursor-highlight" cx="14" cy="11.5" r="4.8" />' +
+          '<path class="cursor-accent" d="M5.8 26.2 C7 20.3 10 18 14 18 C18 18 21 20.3 22.2 26.2 Z" />' +
+          '<path class="cursor-line" d="M7.5 25.2 C8.8 21.4 11 20 14 20 C17 20 19.2 21.4 20.5 25.2" />' +
           "</g>",
         "人员选择指针"
       )
     }
   ];
 
-  var grid = document.getElementById("cursorGrid");
-  var cursorCount = document.getElementById("cursorCount");
   var systemNames = {
     normal: "Arrow",
     help: "Help",
@@ -409,6 +262,7 @@
   }
 
   function renderCards() {
+    var grid = document.getElementById("cursorGrid");
     grid.innerHTML = cursors
       .map(function (cursor, index) {
         return (
@@ -430,8 +284,9 @@
         );
       })
       .join("");
+
+    document.getElementById("cursorCount").textContent = String(cursors.length);
   }
 
   renderCards();
-  cursorCount.textContent = String(cursors.length);
 })();
