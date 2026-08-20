@@ -5,231 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="《明日方舟》直到大地变成一颗酸橙主题鼠标指针概念预览。"
+      content="《明日方舟》直到大地变成一颗酸橙主题 Windows 鼠标指针全状态静态总览。"
     />
-    <title>酸橙旅行指针 · 概念预览</title>
+    <title>酸橙旅行指针 · Windows 全状态静态总览</title>
     <link rel="icon" type="image/svg+xml" href="../assets/orange-icon.svg?v=1" />
-    <link rel="stylesheet" href="./cursors.css?v=1" />
+    <link rel="stylesheet" href="./cursors.css?v=2" />
+    <script src="./cursors.js?v=2" defer></script>
   </head>
-  <body data-motion="on">
-    <header class="site-header">
-      <a class="brand" href="../" aria-label="返回直到大地变成一颗酸橙文字生成器">
-        <span class="brand-fruit" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
-        </span>
-        <span class="brand-copy">
-          <small>ACID LIME TRAVEL POINTERS</small>
-          <strong>酸橙旅行指针</strong>
-        </span>
-      </a>
-      <div class="header-meta" aria-label="项目状态">
-        <span>CONCEPT / 01</span>
-        <span>15 STATES</span>
+  <body>
+    <header class="page-header">
+      <div class="header-copy">
+        <h1>Windows 指针全状态</h1>
+        <p class="summary">酸橙旅行主题 · 17 种标准用途 · 静态造型总览</p>
+      </div>
+      <div class="status-count" aria-label="共 17 种标准指针状态">
+        <strong id="cursorCount">17</strong>
+        <span>种标准状态<br />全部静态展示</span>
       </div>
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="pageTitle">
-        <div class="hero-copy">
-          <p class="eyebrow"><span aria-hidden="true">✦</span> UNTIL THE LAND BECOMES AN ORANGE</p>
-          <h1 id="pageTitle">把旅途折进<br /><em>每一次点击</em></h1>
-          <p class="hero-intro">
-            纸飞机是箭头，酸橙星是等待，信笺与兔子沿着桌面继续旅行。第一版优先保证 Windows
-            指针的辨识度，再把活动里的手绘语法放进轮廓与动画。
-          </p>
-          <div class="hero-tags" aria-label="设计关键词">
-            <span>纸飞机</span>
-            <span>透明信笺</span>
-            <span>公路旅行</span>
-            <span>酸橙星</span>
-          </div>
-        </div>
+      <section class="catalog" aria-labelledby="catalogTitle">
+        <header class="catalog-heading">
+          <h2 id="catalogTitle">全部变种</h2>
+          <p>后台运行与忙碌暂以静态关键帧展示。</p>
+        </header>
 
-        <div class="hero-art" aria-hidden="true">
-          <div class="hero-sun"></div>
-          <div class="hero-postcard">
-            <span class="postcard-label">ZERO ROAD / 2026</span>
-            <span class="postcard-route"></span>
-            <span class="postcard-star star-a">✦</span>
-            <span class="postcard-star star-b">✧</span>
-            <span class="postcard-copy">A little letter<br />from the road.</span>
-          </div>
-          <div class="hero-pointer" id="heroPointer"></div>
-          <div class="hero-stamp">SUMMER<br />MEMORY</div>
-          <svg class="hero-flight-line" viewBox="0 0 520 280" role="presentation">
-            <path d="M22 215 C112 132 151 267 245 188 S402 62 498 92" />
-          </svg>
-        </div>
-      </section>
-
-      <section class="preview-section section-shell" aria-labelledby="previewTitle">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">LIVE HOTSPOT TEST</p>
-            <h2 id="previewTitle">把鼠标移进来试试</h2>
-          </div>
-          <p>从下方选择任意状态；预览指针会按设定热点跟随鼠标。</p>
-        </div>
-
-        <div class="preview-toolbar" aria-label="预览设置">
-          <div class="toolbar-group">
-            <span>背景</span>
-            <div class="segmented" id="backgroundControls">
-              <button class="active" type="button" data-background="mixed" aria-pressed="true">混合</button>
-              <button type="button" data-background="light" aria-pressed="false">浅色</button>
-              <button type="button" data-background="dark" aria-pressed="false">深色</button>
-            </div>
-          </div>
-          <div class="toolbar-group">
-            <span>大小</span>
-            <div class="segmented" id="sizeControls">
-              <button type="button" data-size="32" aria-pressed="false">32</button>
-              <button class="active" type="button" data-size="48" aria-pressed="true">48</button>
-              <button type="button" data-size="64" aria-pressed="false">64</button>
-            </div>
-          </div>
-          <label class="motion-toggle">
-            <input id="motionToggle" type="checkbox" checked />
-            <span class="toggle-track" aria-hidden="true"><i></i></span>
-            <span>播放动画</span>
-          </label>
-        </div>
-
-        <div class="desktop-preview" id="desktopPreview" data-background="mixed">
-          <div class="desktop-sky" aria-hidden="true">
-            <span class="cloud cloud-one"></span>
-            <span class="cloud cloud-two"></span>
-            <span class="road-line"></span>
-          </div>
-          <div class="desktop-topbar">
-            <span class="desktop-wordmark">ORANGE//TRIP</span>
-            <span>12:06</span>
-          </div>
-          <div class="desktop-icons" aria-hidden="true">
-            <span><i>✉</i><b>透明信笺</b></span>
-            <span><i>☆</i><b>愿望清单</b></span>
-            <span><i>▣</i><b>旅行照片</b></span>
-          </div>
-          <div class="mock-window">
-            <div class="mock-window-bar">
-              <span><i></i><i></i><i></i></span>
-              <b>TRAVELER'S NOTE.txt</b>
-            </div>
-            <div class="mock-window-content">
-              <p class="mock-date">AUG. 01 — ZERO ROAD</p>
-              <h3>下一站，<br />去看大地尽头。</h3>
-              <label>
-                <span>写下一句话</span>
-                <input type="text" value="风会替我把信送到。" readonly />
-              </label>
-              <div class="mock-actions">
-                <button type="button">装进背包</button>
-                <button type="button" disabled>尚未抵达</button>
-              </div>
-            </div>
-          </div>
-          <aside class="desktop-note" aria-hidden="true">
-            <span>WISH #06</span>
-            <strong>和大家一起<br />走得更远</strong>
-            <i>✦</i>
-          </aside>
-          <div class="live-cursor is-parked" id="liveCursor" aria-hidden="true"></div>
-          <p class="desktop-hint">MOVE YOUR POINTER HERE</p>
-        </div>
-
-        <div class="selected-readout" aria-live="polite">
-          <span class="selected-number" id="selectedNumber">01</span>
-          <div>
-            <small id="selectedEnglish">NORMAL SELECT</small>
-            <strong id="selectedName">正常选择 · 纸飞机箭头</strong>
-          </div>
-          <p id="selectedDescription">点击热点固定在纸飞机最前端，尾部星芒不参与定位。</p>
-          <span class="hotspot-chip" id="hotspotChip">HOTSPOT 7 × 6</span>
-        </div>
-      </section>
-
-      <section class="scheme-section section-shell" aria-labelledby="schemeTitle">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">WINDOWS POINTER SCHEME</p>
-            <h2 id="schemeTitle">一套完整的 15 种状态</h2>
-          </div>
-          <p>点击卡片即可送到上面的桌面里测试。</p>
-        </div>
-        <div class="cursor-grid" id="cursorGrid"></div>
-      </section>
-
-      <section class="design-section section-shell" aria-labelledby="designTitle">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">VISUAL GRAMMAR</p>
-            <h2 id="designTitle">从活动素材抽出的视觉语法</h2>
-          </div>
-          <p>默认版重画成小尺寸矢量；原贴纸保留给收藏版和动画状态。</p>
-        </div>
-
-        <div class="design-grid">
-          <article class="palette-card">
-            <div class="card-label"><span>01</span> COLOR SYSTEM</div>
-            <h3>白色主体，深色护边</h3>
-            <p>任何桌面上都先保证看得清，再用蓝、黄、橙、粉做少量状态提示。</p>
-            <div class="swatches" aria-label="配色">
-              <span style="--swatch:#173746"><b>#173746</b></span>
-              <span style="--swatch:#087fc3"><b>#087FC3</b></span>
-              <span style="--swatch:#69dce6"><b>#69DCE6</b></span>
-              <span style="--swatch:#ffd43b"><b>#FFD43B</b></span>
-              <span style="--swatch:#ff8a2a"><b>#FF8A2A</b></span>
-              <span style="--swatch:#f35da6"><b>#F35DA6</b></span>
-            </div>
-          </article>
-
-          <article class="motif-card">
-            <div class="card-label"><span>02</span> SOURCE MOTIFS</div>
-            <h3>路线、兔子、星星与花</h3>
-            <div class="motif-strip" aria-label="项目现有活动装饰素材">
-              <span><img src="../assets/angelina/decorations/23.png" alt="酸橙星星" /><b>酸橙星</b></span>
-              <span><img src="../assets/angelina/decorations/20.png" alt="奔跑兔兔" /><b>奔跑兔</b></span>
-              <span class="dark-motif"><img src="../assets/angelina/decorations/14.png" alt="手绘弧线" /><b>旅行路线</b></span>
-              <span><img src="../assets/angelina/decorations/24.png" alt="薄荷花朵" /><b>薄荷花</b></span>
-            </div>
-          </article>
-
-          <article class="collector-card">
-            <div class="card-label"><span>03</span> COLLECTOR EDITION</div>
-            <div class="collector-copy">
-              <div>
-                <h3>角色贴纸只做“惊喜”</h3>
-                <p>完整角色适合后台运行、等待动画和大尺寸收藏版，不占用默认箭头的点击空间。</p>
-              </div>
-              <span class="collector-badge">OPTION B</span>
-            </div>
-            <div class="character-strip" aria-label="角色贴纸方向示例">
-              <span><img src="../assets/angelina/static/airplane.png" alt="纸飞机安洁莉娜" /></span>
-              <span><img src="../assets/angelina/static/delivery.png" alt="送货安洁莉娜" /></span>
-              <span><img src="../assets/angelina/static/dive.png" alt="潜水安洁莉娜" /></span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="next-section section-shell" aria-labelledby="nextTitle">
-        <div>
-          <p class="section-kicker">NEXT MILESTONE</p>
-          <h2 id="nextTitle">预览确认后，进入真正的指针包</h2>
-        </div>
-        <ol>
-          <li><span>01</span><strong>微调轮廓与热点</strong><small>32 / 48 / 64 / 96 px</small></li>
-          <li><span>02</span><strong>生成 CUR 与 ANI</strong><small>13 static + 2 animated</small></li>
-          <li><span>03</span><strong>打包安装方案</strong><small>INF / README / PREVIEW</small></li>
-        </ol>
+        <div class="cursor-grid" id="cursorGrid" aria-label="Windows 指针全状态静态列表"></div>
+        <noscript>请启用 JavaScript 以显示指针图稿。</noscript>
       </section>
     </main>
 
     <footer>
-      <p>非官方、非商业的同人概念设计；相关角色与活动美术权利归其权利人所有。</p>
-      <a href="../">返回文字生成器 <span aria-hidden="true">→</span></a>
+      <p>非官方、非商业的同人概念设计。当前仅为静态造型确认稿。</p>
     </footer>
-
-    <script src="./cursors.js?v=1"></script>
   </body>
 </html>

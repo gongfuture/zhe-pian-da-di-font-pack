@@ -340,24 +340,69 @@
           '<circle class="cursor-pink" cx="48" cy="44" r="4" />',
         "链接选择指针"
       )
+    },
+    {
+      id: "location",
+      name: "位置选择 · 旅行定位标",
+      shortName: "位置选择",
+      english: "LOCATION SELECT",
+      format: "CUR",
+      hotspot: [7, 7],
+      description: "纸飞机箭头旁加入路线定位标，对应 Windows 的位置选择状态。",
+      art: svg(
+        arrowBody("translate(0 5) scale(.72)") +
+          '<g transform="translate(32 10)">' +
+          '<path class="cursor-paper" d="M14 1 C6.2 1 1 6.8 1 14.4 C1 24.8 14 39 14 39 C14 39 27 24.8 27 14.4 C27 6.8 21.8 1 14 1 Z" />' +
+          '<circle class="cursor-sky" cx="14" cy="14" r="6" />' +
+          '<circle class="cursor-paper-thin" cx="14" cy="14" r="2.2" />' +
+          sparkle(25, 4, 3, "cursor-yellow") +
+          "</g>",
+        "位置选择指针"
+      )
+    },
+    {
+      id: "person",
+      name: "人员选择 · 旅伴徽章",
+      shortName: "人员选择",
+      english: "PERSON SELECT",
+      format: "CUR",
+      hotspot: [7, 7],
+      description: "纸飞机箭头搭配旅伴头像徽章，对应 Windows 的人员选择状态。",
+      art: svg(
+        arrowBody("translate(0 5) scale(.72)") +
+          '<g transform="translate(31 12)">' +
+          '<circle class="cursor-paper" cx="15" cy="17" r="14" />' +
+          '<circle class="cursor-yellow" cx="15" cy="12" r="5" />' +
+          '<path class="cursor-blue" d="M6.5 27 C7.8 20.5 11 18 15 18 C19 18 22.2 20.5 23.5 27 Z" />' +
+          '<path class="cursor-fold" d="M8 27 C9 22 11.5 20 15 20 C18.5 20 21 22 22 27" />' +
+          sparkle(29, 5, 3.2, "cursor-pink") +
+          "</g>",
+        "人员选择指针"
+      )
     }
   ];
 
   var grid = document.getElementById("cursorGrid");
-  var preview = document.getElementById("desktopPreview");
-  var liveCursor = document.getElementById("liveCursor");
-  var heroPointer = document.getElementById("heroPointer");
-  var selectedNumber = document.getElementById("selectedNumber");
-  var selectedEnglish = document.getElementById("selectedEnglish");
-  var selectedName = document.getElementById("selectedName");
-  var selectedDescription = document.getElementById("selectedDescription");
-  var hotspotChip = document.getElementById("hotspotChip");
-  var backgroundControls = document.getElementById("backgroundControls");
-  var sizeControls = document.getElementById("sizeControls");
-  var motionToggle = document.getElementById("motionToggle");
-  var activeCursor = cursors[0];
-  var previewSize = 48;
-  var isLive = false;
+  var cursorCount = document.getElementById("cursorCount");
+  var systemNames = {
+    normal: "Arrow",
+    help: "Help",
+    working: "AppStarting",
+    busy: "Wait",
+    precision: "Crosshair",
+    text: "IBeam",
+    handwriting: "NWPen",
+    unavailable: "No",
+    "resize-ns": "SizeNS",
+    "resize-we": "SizeWE",
+    "resize-nwse": "SizeNWSE",
+    "resize-nesw": "SizeNESW",
+    move: "SizeAll",
+    alternate: "UpArrow",
+    link: "Hand",
+    location: "Pin",
+    person: "Person"
+  };
 
   function twoDigits(number) {
     return String(number).padStart(2, "0");
@@ -367,144 +412,26 @@
     grid.innerHTML = cursors
       .map(function (cursor, index) {
         return (
-          '<button class="cursor-card' +
-          (index === 0 ? " active" : "") +
-          '" type="button" data-cursor-id="' +
-          cursor.id +
-          '" aria-pressed="' +
-          (index === 0 ? "true" : "false") +
-          '">' +
-          '<span class="cursor-card-top"><span class="cursor-card-index">' +
+          '<article class="cursor-card">' +
+          '<div class="cursor-card-meta"><span class="cursor-card-index">' +
           twoDigits(index + 1) +
-          '</span><span class="cursor-card-format' +
-          (cursor.animated ? " is-animated" : "") +
-          '">' +
-          cursor.format +
-          "</span></span>" +
-          '<span class="cursor-card-art" aria-hidden="true">' +
+          "</span><code>" +
+          systemNames[cursor.id] +
+          "</code></div>" +
+          '<div class="cursor-card-art" aria-hidden="true">' +
           cursor.art +
-          "</span>" +
-          "<strong>" +
-          cursor.shortName +
-          "</strong>" +
-          "<small>" +
+          (cursor.animated ? '<span class="static-frame-label">静态帧</span>' : "") +
+          "</div>" +
+          '<div class="cursor-card-copy"><h3>' +
+          cursor.name +
+          '</h3><span class="english-name">' +
           cursor.english +
-          "</small>" +
-          "</button>"
+          "</span></div></article>"
         );
       })
       .join("");
   }
 
-  function updateLiveCursor() {
-    liveCursor.innerHTML = activeCursor.art;
-    liveCursor.style.width = previewSize + "px";
-    liveCursor.style.height = previewSize + "px";
-    if (!isLive) {
-      liveCursor.style.transform = "translate(-50%, -50%)";
-    }
-  }
-
-  function selectCursor(cursorId) {
-    var next = cursors.find(function (cursor) {
-      return cursor.id === cursorId;
-    });
-    if (!next) {
-      return;
-    }
-    activeCursor = next;
-    var index = cursors.indexOf(next);
-    grid.querySelectorAll(".cursor-card").forEach(function (card) {
-      var active = card.dataset.cursorId === cursorId;
-      card.classList.toggle("active", active);
-      card.setAttribute("aria-pressed", active ? "true" : "false");
-    });
-    selectedNumber.textContent = twoDigits(index + 1);
-    selectedEnglish.textContent = next.english;
-    selectedName.textContent = next.name;
-    selectedDescription.textContent = next.description;
-    hotspotChip.textContent = "HOTSPOT " + next.hotspot[0] + " × " + next.hotspot[1];
-    updateLiveCursor();
-  }
-
-  function setSegmentedActive(container, selectedButton) {
-    container.querySelectorAll("button").forEach(function (button) {
-      var active = button === selectedButton;
-      button.classList.toggle("active", active);
-      button.setAttribute("aria-pressed", active ? "true" : "false");
-    });
-  }
-
   renderCards();
-  heroPointer.innerHTML = cursors[0].art;
-  updateLiveCursor();
-
-  grid.addEventListener("click", function (event) {
-    var card = event.target.closest("[data-cursor-id]");
-    if (card) {
-      selectCursor(card.dataset.cursorId);
-    }
-  });
-
-  backgroundControls.addEventListener("click", function (event) {
-    var button = event.target.closest("[data-background]");
-    if (!button) {
-      return;
-    }
-    setSegmentedActive(backgroundControls, button);
-    preview.dataset.background = button.dataset.background;
-  });
-
-  sizeControls.addEventListener("click", function (event) {
-    var button = event.target.closest("[data-size]");
-    if (!button) {
-      return;
-    }
-    setSegmentedActive(sizeControls, button);
-    previewSize = Number(button.dataset.size) || 48;
-    updateLiveCursor();
-  });
-
-  motionToggle.addEventListener("change", function () {
-    document.body.dataset.motion = motionToggle.checked ? "on" : "off";
-  });
-
-  preview.addEventListener("pointerenter", function (event) {
-    if (event.pointerType === "touch") {
-      return;
-    }
-    isLive = true;
-    preview.classList.add("is-live");
-    liveCursor.classList.remove("is-parked");
-  });
-
-  preview.addEventListener("pointermove", function (event) {
-    if (!isLive || event.pointerType === "touch") {
-      return;
-    }
-    var rect = preview.getBoundingClientRect();
-    var scale = previewSize / 64;
-    liveCursor.style.left = event.clientX - rect.left + "px";
-    liveCursor.style.top = event.clientY - rect.top + "px";
-    liveCursor.style.transform =
-      "translate(" +
-      -activeCursor.hotspot[0] * scale +
-      "px," +
-      -activeCursor.hotspot[1] * scale +
-      "px)";
-  });
-
-  preview.addEventListener("pointerleave", function () {
-    isLive = false;
-    preview.classList.remove("is-live");
-    liveCursor.classList.add("is-parked");
-    liveCursor.style.left = "";
-    liveCursor.style.top = "";
-    liveCursor.style.transform = "translate(-50%, -50%)";
-  });
-
-  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    motionToggle.checked = false;
-    document.body.dataset.motion = "off";
-  }
+  cursorCount.textContent = String(cursors.length);
 })();
